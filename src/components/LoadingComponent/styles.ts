@@ -1,19 +1,4 @@
-import { keyframes, styled } from "..";
-
-export const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  minHeight: "100vh",
-});
-
-export const Header = styled("header", {
-  padding: "2rem 0",
-  width: "100%",
-  maxWidth: 1100,
-  margin: "0 auto",
-});
+import { keyframes, styled } from "../../styles";
 
 const LoadingAnimation = keyframes({
   "0%": {
@@ -36,7 +21,7 @@ const Rotating = keyframes({
   },
 });
 
-export const LoadingComponent = styled("div", {
+export const LoadingContainer = styled("div", {
   width: "100vw",
   height: "100vh",
 
@@ -67,7 +52,6 @@ export const LoadingComponent = styled("div", {
     alignItems: "center",
     justifyContent: "center",
     zIndex: 1,
-    animation: `${LoadingAnimation} 1s ease-in-out infinite`,
     position: "relative",
     borderRadius: 8,
 

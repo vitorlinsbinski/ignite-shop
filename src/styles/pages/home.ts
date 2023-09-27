@@ -63,3 +63,19 @@ export const Product = styled("div", {
     },
   },
 });
+
+export const LoadingProduct = styled("div", {
+  width: "40rem",
+  height: "20rem",
+  background: "red",
+  borderRadius: 8,
+  //padding: "0.25rem",
+  cursor: "pointer",
+  position: "relative",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+  maxWidth: 540,
+});

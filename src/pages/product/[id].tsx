@@ -13,6 +13,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Stripe from "stripe";
+import Head from "next/head";
+
+import { LoadingComponent } from "@/components/LoadingComponent";
 
 interface ProductProps {
   product: {
@@ -62,38 +65,55 @@ export default function Product({ product }: ProductProps) {
 
   if (isFallback) {
     return (
-      <LoadingContainer>
-        <ImageLoadingContainer></ImageLoadingContainer>
+      <>
+        <Head>
+          <title>Product | Ignite Shop</title>
+        </Head>
 
-        <ProductLoadingDetails>
-          <div className="title"></div>
+        <LoadingContainer>
+          <ImageLoadingContainer></ImageLoadingContainer>
 
-          <div className="price"></div>
+          <ProductLoadingDetails>
+            <div className="title"></div>
 
-          <div className="description"></div>
+            <div className="price"></div>
 
-          <div className="button"></div>
-        </ProductLoadingDetails>
-      </LoadingContainer>
+            <div className="description"></div>
+
+            <div className="button"></div>
+          </ProductLoadingDetails>
+        </LoadingContainer>
+      </>
     );
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image src={product.imageUrl} alt="" width={520} height={480} />
-      </ImageContainer>
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
 
-      <ProductDetails>
-        <h1>{product.name}</h1>
-        <span>{product.price}</span>
-        <p>{product.description}</p>
+      {isCreatingCheckoutSection && <LoadingComponent />}
 
-        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSection}>
-          Comprar agora
-        </button>
-      </ProductDetails>
-    </ProductContainer>
+      <ProductContainer>
+        <ImageContainer>
+          <Image src={product.imageUrl} alt="" width={520} height={480} />
+        </ImageContainer>
+
+        <ProductDetails>
+          <h1>{product.name}</h1>
+          <span>{product.price}</span>
+          <p>{product.description}</p>
+
+          <button
+            onClick={handleBuyProduct}
+            disabled={isCreatingCheckoutSection}
+          >
+            Comprar agora
+          </button>
+        </ProductDetails>
+      </ProductContainer>
+    </>
   );
 }
 
