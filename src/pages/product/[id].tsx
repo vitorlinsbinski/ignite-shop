@@ -7,9 +7,11 @@ import {
   ProductDetails,
   ProductLoadingDetails,
 } from "@/styles/pages/product";
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Stripe from "stripe";
 
 interface ProductProps {
@@ -19,6 +21,7 @@ interface ProductProps {
     imageUrl: string;
     price: string;
     description: string;
+    defaultPriceId: string;
   };
 }
 
@@ -31,6 +34,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
+
+  const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] =
+    useState(false);
+
+  //const router = useRouter();
+
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingCheckoutSection(true);
+
+      const response = await axios.post("/api/checkout", {
+        priceId: product.defaultPriceId,
+      });
+
+      const { checkoutUrl } = response.data;
+
+      // router.push('/checkout');
+      window.location.href = checkoutUrl;
+    } catch {
+      setIsCreatingCheckoutSection(false);
+
+      // Conectar com alguma ferramenta de observabilidade (Datadog / Sentry)
+      alert("Falha ao redirecionar ao checkout");
+    }
+  }
 
   if (isFallback) {
     return (
@@ -61,7 +89,9 @@ export default function Product({ product }: ProductProps) {
         <span>{product.price}</span>
         <p>{product.description}</p>
 
-        <button>Comprar agora</button>
+        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSection}>
+          Comprar agora
+        </button>
       </ProductDetails>
     </ProductContainer>
   );
@@ -97,6 +127,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           currency: "BRL",
         }).format(price.unit_amount / 100),
         description: product.description,
+        defaultPriceId: price.id,
       },
     },
     revalidate: 60 * 60 * 1,

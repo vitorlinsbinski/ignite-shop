@@ -14,3 +14,5 @@ export const Header = styled("header", {
   maxWidth: 1100,
   margin: "0 auto",
 });
+
+export const LoadingComponent = styled("div", {});
