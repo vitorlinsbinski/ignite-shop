@@ -1,4 +1,17 @@
+import { keyframes } from "@stitches/react";
 import { styled } from "..";
+
+export const backgroundChange = keyframes({
+  "0%": {
+    background: "#202024", // Cinza escuro
+  },
+  "50%": {
+    background: "#3c3c3c", // Cinza médio
+  },
+  "100%": {
+    background: "#515151", // Cinza claro
+  },
+});
 
 export const ProductContainer = styled("main", {
   display: "grid",
@@ -65,5 +78,43 @@ export const ProductDetails = styled("div", {
     "&:hover": {
       backgroundColor: "$green300",
     },
+  },
+});
+
+export const LoadingContainer = styled("main", {
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  maxWidth: 1180,
+  width: "100%",
+  margin: "0 auto",
+});
+
+export const ImageLoadingContainer = styled("div", {
+  width: "50%",
+  background: "#202024",
+  borderRadius: 8,
+  padding: "0.25rem",
+  animation: `${backgroundChange} 1s infinite`,
+  height: 656,
+});
+
+export const ProductLoadingDetails = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "3rem",
+  width: "40%",
+
+  ".title, .price, .description, .button": {
+    width: "100%",
+    height: "2rem",
+    background: "#202024",
+    animation: `${backgroundChange} 1s infinite`,
+
+    borderRadius: 8,
+  },
+
+  ".button": {
+    marginTop: "auto",
   },
 });
