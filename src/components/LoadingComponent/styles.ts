@@ -52,6 +52,7 @@ export const LoadingContainer = styled("div", {
     alignItems: "center",
     justifyContent: "center",
     zIndex: 1,
+    animation: `${LoadingAnimation} 1s ease-in-out infinite`,
     position: "relative",
     borderRadius: 8,
 

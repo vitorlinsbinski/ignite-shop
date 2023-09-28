@@ -2,15 +2,18 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import { SwiperItem } from "@/components/SwiperItem";
+import { SwiperSkeleton } from "@/components/SwiperItemSkeleton";
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 import { stripe } from "../lib/stripe";
 
-import { HomeContainer, Product, LoadingProduct } from "../styles/pages/home";
+import { HomeContainer } from "../styles/pages/home";
 
 import Stripe from "stripe";
+import { useEffect, useState } from "react";
 
 interface HomeProps {
   products: {
@@ -22,6 +25,13 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+  const [sliderRefSkeleton] = useKeenSlider({
+    slides: {
+      perView: 2.5,
+      spacing: 48,
+    },
+  });
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 2.5,
@@ -29,32 +39,49 @@ export default function Home({ products }: HomeProps) {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  function getRandomDelay() {
+    const minDelay = 100;
+    const maxDelay = 1000;
+
+    const randomFraction = Math.random();
+    const randomDelay = minDelay + randomFraction * (maxDelay - minDelay);
+
+    return randomDelay;
+  }
+
+  useEffect(() => {
+    const randomDelay = getRandomDelay();
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, randomDelay);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
 
-      <HomeContainer ref={sliderRef} className="keen-slider">
-        {products.map((product) => {
-          return (
-            <Link
-              href={`/product/${product.id}`}
-              key={product.id}
-              prefetch={false}
-            >
-              <Product className="keen-slider__slide">
-                <Image src={product.imageUrl} alt="" width={520} height={480} />
-
-                <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
-                </footer>
-              </Product>
-            </Link>
-          );
-        })}
-      </HomeContainer>
+      {isLoading ? (
+        <HomeContainer ref={sliderRefSkeleton} className="keen-slider">
+          <SwiperSkeleton />
+          <SwiperSkeleton />
+          <SwiperSkeleton />
+          <SwiperSkeleton />
+          <SwiperSkeleton />
+        </HomeContainer>
+      ) : (
+        <HomeContainer ref={sliderRef} className="keen-slider">
+          {products.map((product) => (
+            <SwiperItem product={product} key={product.id} />
+          ))}
+        </HomeContainer>
+      )}
     </>
   );
 }

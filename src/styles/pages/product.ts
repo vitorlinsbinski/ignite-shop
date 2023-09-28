@@ -1,15 +1,12 @@
 import { keyframes } from "@stitches/react";
 import { styled } from "..";
 
-export const backgroundChange = keyframes({
+const skeletonAnimation = keyframes({
   "0%": {
-    background: "#202024", // Cinza escuro
-  },
-  "50%": {
-    background: "#3c3c3c", // Cinza médio
+    backgroundPosition: "-500px 0",
   },
   "100%": {
-    background: "#515151", // Cinza claro
+    backgroundPosition: "calc(500px + 100%) 0",
   },
 });
 
@@ -97,10 +94,13 @@ export const LoadingContainer = styled("main", {
 
 export const ImageLoadingContainer = styled("div", {
   width: "50%",
-  background: "#202024",
+  backgroundColor: "$gray800",
+  backgroundImage: "linear-gradient(90deg, #202024, #29292e, #202024)",
+  backgroundSize: "800px 100%",
+  backgroundRepeat: "no-repeat",
   borderRadius: 8,
   padding: "0.25rem",
-  animation: `${backgroundChange} 1s infinite`,
+  animation: `${skeletonAnimation} .5s ease-in-out infinite`,
   height: 656,
 });
 
@@ -113,8 +113,11 @@ export const ProductLoadingDetails = styled("div", {
   ".title, .price, .description, .button": {
     width: "100%",
     height: "2rem",
-    background: "#202024",
-    animation: `${backgroundChange} 1s infinite`,
+    backgroundColor: "$gray800",
+    backgroundImage: "linear-gradient(90deg, #202024, #29292e, #202024)",
+    backgroundSize: "800px 100%",
+    backgroundRepeat: "no-repeat",
+    animation: `${skeletonAnimation} .5s ease-in-out infinite`,
 
     borderRadius: 8,
   },
