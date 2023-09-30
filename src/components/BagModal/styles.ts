@@ -82,6 +82,24 @@ export const ProductsList = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "1.5rem",
+  height: "auto",
+  overflowY: "scroll",
+  marginBottom: "3rem",
+  borderRadius: 8,
+
+  "&::-webkit-scrollbar ": {
+    width: 3,
+  },
+
+  "&::-webkit-scrollbar-track ": {
+    backgroundColor: "transparent",
+    padding: 2,
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "$green300",
+    borderRadius: 8,
+  },
 });
 
 export const Product = styled("div", {
@@ -133,7 +151,7 @@ export const Product = styled("div", {
       fontSize: "1rem",
       fontWeight: "700",
       border: 0,
-      marginTop: "auto",
+
       cursor: "pointer",
       transition: "color .3s",
 
@@ -216,6 +234,32 @@ export const CloseButton = styled(Dialog.Close, {
   "&:hover": {
     svg: {
       color: "$gray100",
+    },
+  },
+});
+
+export const ProductCounter = styled("div", {
+  backgroundColor: "#282835",
+  width: "5rem",
+  height: "2.4rem",
+  padding: "0.375rem 0.4375rem",
+  marginBottom: ".5rem",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "0.625rem",
+  borderRadius: 6,
+
+  button: {
+    cursor: "pointer",
+
+    "&:disabled": {
+      cursor: "not-allowed",
+    },
+
+    svg: {
+      color: "$green300",
     },
   },
 });

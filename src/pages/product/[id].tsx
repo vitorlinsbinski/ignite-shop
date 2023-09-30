@@ -11,20 +11,23 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Stripe from "stripe";
 import Head from "next/head";
 
 import { LoadingComponent } from "@/components/LoadingComponent";
+import { CartContext } from "@/contexts/CartContext";
 
 interface ProductProps {
   product: {
     id: string;
     name: string;
     imageUrl: string;
-    price: string;
+    price: number;
+    priceFormatted: string;
     description: string;
     defaultPriceId: string;
+    quantity: number;
   };
 }
 
@@ -38,29 +41,33 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
 
+  const { AddProductToCart } = useContext(CartContext);
+
   const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] =
     useState(false);
 
   //const router = useRouter();
 
   async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSection(true);
+    AddProductToCart(product);
 
-      const response = await axios.post("/api/checkout", {
-        priceId: product.defaultPriceId,
-      });
+    // try {
+    //   setIsCreatingCheckoutSection(true);
 
-      const { checkoutUrl } = response.data;
+    //   const response = await axios.post("/api/checkout", {
+    //     priceId: product.defaultPriceId,
+    //   });
 
-      // router.push('/checkout');
-      window.location.href = checkoutUrl;
-    } catch {
-      setIsCreatingCheckoutSection(false);
+    //   const { checkoutUrl } = response.data;
 
-      // Conectar com alguma ferramenta de observabilidade (Datadog / Sentry)
-      alert("Falha ao redirecionar ao checkout");
-    }
+    //   // router.push('/checkout');
+    //   window.location.href = checkoutUrl;
+    // } catch {
+    //   setIsCreatingCheckoutSection(false);
+
+    //   // Conectar com alguma ferramenta de observabilidade (Datadog / Sentry)
+    //   alert("Falha ao redirecionar ao checkout");
+    // }
   }
 
   if (isFallback) {
@@ -102,7 +109,7 @@ export default function Product({ product }: ProductProps) {
 
         <ProductDetails>
           <h1>{product.name}</h1>
-          <span>{product.price}</span>
+          <span>{product.priceFormatted}</span>
           <p>{product.description}</p>
 
           <button
@@ -142,7 +149,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
         id: product.id,
         name: product.name,
         imageUrl: product.images[0],
-        price: new Intl.NumberFormat("pt-br", {
+        priceFormated: new Intl.NumberFormat("pt-br", {
           style: "currency",
           currency: "BRL",
         }).format(price.unit_amount / 100),

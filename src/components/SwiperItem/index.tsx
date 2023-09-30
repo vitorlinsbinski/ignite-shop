@@ -10,7 +10,11 @@ interface SwiperItemProps {
     id: string;
     name: string;
     imageUrl: string;
-    price: string;
+    price: number;
+    priceFormatted: string;
+    description: string;
+    defaultPriceId: string;
+    quantity: number;
   };
 }
 
@@ -18,7 +22,7 @@ export function SwiperItem({ product }: SwiperItemProps) {
   const { AddProductToCart } = useContext(CartContext);
 
   function handleAddToCartButton() {
-    AddProductToCart(product.id);
+    AddProductToCart(product);
   }
 
   return (
@@ -30,7 +34,7 @@ export function SwiperItem({ product }: SwiperItemProps) {
       <footer>
         <div className="left">
           <strong>{product.name}</strong>
-          <span>{product.price}</span>
+          <span>{product.priceFormatted}</span>
         </div>
 
         <AddToBagButton onClick={handleAddToCartButton}>
