@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
 
-  const { AddProductToCart } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   const [isCreatingCheckoutSection, setIsCreatingCheckoutSection] =
     useState(false);
@@ -49,7 +49,7 @@ export default function Product({ product }: ProductProps) {
   //const router = useRouter();
 
   async function handleBuyProduct() {
-    AddProductToCart(product);
+    addProductToCart(product);
 
     // try {
     //   setIsCreatingCheckoutSection(true);
@@ -149,6 +149,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
         id: product.id,
         name: product.name,
         imageUrl: product.images[0],
+        price: price.unit_amount / 100,
         priceFormated: new Intl.NumberFormat("pt-br", {
           style: "currency",
           currency: "BRL",

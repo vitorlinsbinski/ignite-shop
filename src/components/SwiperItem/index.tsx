@@ -19,10 +19,10 @@ interface SwiperItemProps {
 }
 
 export function SwiperItem({ product }: SwiperItemProps) {
-  const { AddProductToCart } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   function handleAddToCartButton() {
-    AddProductToCart(product);
+    addProductToCart(product);
   }
 
   return (

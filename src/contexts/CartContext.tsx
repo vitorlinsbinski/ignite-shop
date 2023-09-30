@@ -17,7 +17,7 @@ interface ProductInCart {
 
 interface CartContextType {
   productsInCart: ProductInCart[];
-  AddProductToCart: (product: ProductInCart) => void;
+  addProductToCart: (product: ProductInCart) => void;
   removeProductFromCart: (id: string) => void;
 
   addQuantity: (id: string) => void;
@@ -51,7 +51,7 @@ export function CartContextProvider({
     return acc + product.quantity;
   }, 0);
 
-  function AddProductToCart(product: ProductInCart) {
+  function addProductToCart(product: ProductInCart) {
     const existingProduct = productsInCart.find((p) => p.id === product.id);
 
     if (existingProduct) {
@@ -113,7 +113,7 @@ export function CartContextProvider({
     <CartContext.Provider
       value={{
         productsInCart,
-        AddProductToCart,
+        addProductToCart,
         removeProductFromCart,
         addQuantity,
         removeQuantity,

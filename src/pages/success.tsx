@@ -1,5 +1,9 @@
 import { stripe } from "@/lib/stripe";
-import { ImageContainer, SuccessContainer } from "@/styles/pages/success";
+import {
+  ImageContainer,
+  ProductsContainer,
+  SuccessContainer,
+} from "@/styles/pages/success";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,13 +12,15 @@ import Head from "next/head";
 
 interface SuccessProps {
   customerName: string;
-  product: {
+  products: {
+    id: string;
     name: string;
     imageUrl: string;
-  };
+    quantity: number;
+  }[];
 }
 
-export default function Success({ customerName, product }: SuccessProps) {
+export default function Success({ customerName, products }: SuccessProps) {
   return (
     <>
       <Head>
@@ -24,15 +30,36 @@ export default function Success({ customerName, product }: SuccessProps) {
       </Head>
 
       <SuccessContainer>
+        <ProductsContainer>
+          {products.map((product) => {
+            return (
+              <ImageContainer key={product.id}>
+                <Image src={product.imageUrl} alt="" width={120} height={110} />
+              </ImageContainer>
+            );
+          })}
+        </ProductsContainer>
+
         <h1>Compra efetuada!</h1>
 
-        <ImageContainer>
-          <Image src={product.imageUrl} alt="" width={120} height={110} />
-        </ImageContainer>
-
         <p>
-          Uhuul <strong>{customerName}</strong>, sua Camiseta{" "}
-          <strong>{product.name}</strong> já está a caminho da sua casa.
+          Uhuul <strong>{customerName}</strong>, seus produtos:{" "}
+          {products.map((product) => {
+            return (
+              <>
+                <strong key={product.id}>
+                  {product.name} ({product.quantity}{" "}
+                  {product.quantity <= 1 ? (
+                    <span>unidade</span>
+                  ) : (
+                    <span>unidades</span>
+                  )}
+                  ),
+                </strong>{" "}
+              </>
+            );
+          })}
+          já estão a caminho da sua casa.
         </p>
 
         <Link href="/">Voltar ao catálogo</Link>
@@ -58,15 +85,21 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   });
 
   const customerName = session.customer_details.name;
-  const product = session.line_items.data[0].price.product as Stripe.Product;
+
+  const products = session.line_items.data.map((item) => {
+    const product = item.price.product as Stripe.Product;
+    return {
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+      quantity: item.quantity,
+    };
+  });
 
   return {
     props: {
       customerName,
-      product: {
-        name: product.name,
-        imageUrl: product.images[0],
-      },
+      products,
     },
   };
 };
