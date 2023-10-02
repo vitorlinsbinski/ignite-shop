@@ -9,6 +9,11 @@ export const HeaderContainer = styled("header", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+
+  position: "sticky",
+  inset: 0,
+
+  backgroundColor: "$gray900",
 });
 
 export const BagButton = styled("button", {

@@ -78,7 +78,12 @@ export const Content = styled(Dialog.Content, {
   },
 
   "@media (max-width: 560px)": {
+    h2: {
+      marginBottom: "1.4rem",
+    },
+
     width: "100vw",
+    height: "100%",
     padding: "2.5rem 2rem 2rem",
   },
 });
@@ -104,6 +109,10 @@ export const ProductsList = styled("div", {
   "&::-webkit-scrollbar-thumb": {
     backgroundColor: "$green300",
     borderRadius: 8,
+  },
+
+  "@media (max-width: 560px)": {
+    marginBottom: "1.4rem",
   },
 });
 
