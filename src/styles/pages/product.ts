@@ -17,6 +17,18 @@ export const ProductContainer = styled("main", {
   gap: "4rem",
   maxWidth: 1180,
   margin: "0 auto",
+  padding: "0 1rem",
+  width: "100%",
+  paddingBottom: "1.5rem",
+
+  "@media (max-width: 991px)": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    maxWidth: "40rem",
+    gap: "2rem",
+  },
 });
 
 export const ImageContainer = styled("div", {
@@ -34,6 +46,10 @@ export const ImageContainer = styled("div", {
 
   img: {
     objectFit: "cover",
+  },
+
+  "@media (max-width: 991px)": {
+    width: "100%",
   },
 });
 
@@ -79,6 +95,25 @@ export const ProductDetails = styled("div", {
 
     "&:not(:disabled):hover": {
       backgroundColor: "$green300",
+    },
+  },
+
+  "@media (max-width: 991px)": {
+    width: "100%",
+
+    p: {
+      marginTop: ".4rem",
+      marginBottom: "1.5rem",
+    },
+  },
+
+  "@media (max-width: 760px)": {
+    h1: {
+      fontSize: "1.8rem",
+    },
+
+    p: {
+      fontSize: "1rem",
     },
   },
 });

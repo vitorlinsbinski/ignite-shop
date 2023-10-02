@@ -13,6 +13,7 @@ export const ProductLoadingContainer = styled("div", {
   width: "100%",
   maxWidth: 540,
   height: 656,
+  borderRadius: 8,
 
   cursor: "pointer",
   position: "relative",
@@ -21,6 +22,12 @@ export const ProductLoadingContainer = styled("div", {
   justifyContent: "space-between",
   flexDirection: "column",
   overflow: "hidden",
+
+  gap: "1rem",
+
+  "@media (max-width: 420px)": {
+    height: "auto",
+  },
 });
 
 export const ImageLoadingContainer = styled("div", {
@@ -33,6 +40,10 @@ export const ImageLoadingContainer = styled("div", {
   backgroundRepeat: "no-repeat",
 
   animation: `${skeletonAnimation} 1300ms ease-in-out infinite`,
+
+  "@media (max-width: 420px)": {
+    height: "100%",
+  },
 });
 
 export const TextLoadingContainer = styled("div", {
@@ -53,10 +64,10 @@ export const TextLoadingContainer = styled("div", {
   },
 
   ".left": {
-    maxWidth: 330,
+    maxWidth: "50%",
   },
 
   ".right": {
-    maxWidth: 100,
+    maxWidth: "40%",
   },
 });

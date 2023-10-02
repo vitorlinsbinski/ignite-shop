@@ -59,6 +59,29 @@ export const Product = styled("div", {
       opacity: 1,
     },
   },
+
+  "@media (max-width: 420px)": {
+    img: {
+      objectFit: "contain",
+      width: "28rem",
+    },
+
+    footer: {
+      padding: "1.6rem 1.1rem",
+      ".left": {
+        width: "100%",
+        maxWidth: "70%",
+
+        strong: {
+          fontSize: "1rem",
+        },
+
+        span: {
+          fontSize: "1.2rem",
+        },
+      },
+    },
+  },
 });
 
 export const AddToBagButton = styled("button", {

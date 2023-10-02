@@ -30,6 +30,14 @@ interface HomeProps {
 
 export default function Home({ products }: HomeProps) {
   const [sliderRefSkeleton] = useKeenSlider({
+    breakpoints: {
+      "(max-width: 991px)": {
+        slides: { perView: 2, spacing: 30 },
+      },
+      "(max-width: 760px)": {
+        slides: { perView: 1.2, spacing: 20 },
+      },
+    },
     slides: {
       perView: 2.5,
       spacing: 48,
@@ -37,6 +45,14 @@ export default function Home({ products }: HomeProps) {
   });
 
   const [sliderRef] = useKeenSlider({
+    breakpoints: {
+      "(max-width: 991px)": {
+        slides: { perView: 2, spacing: 30 },
+      },
+      "(max-width: 760px)": {
+        slides: { perView: 1.2, spacing: 20 },
+      },
+    },
     slides: {
       perView: 2.5,
       spacing: 48,

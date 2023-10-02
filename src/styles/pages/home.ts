@@ -8,4 +8,13 @@ export const HomeContainer = styled("main", {
   marginLeft: "auto",
   minHeight: 656,
   borderRadius: 8,
+
+  "@media (max-width: 420px)": {
+    minHeight: 500,
+    maxHeight: 500,
+  },
+
+  "@media (max-width: 720px)": {
+    paddingLeft: "1rem",
+  },
 });

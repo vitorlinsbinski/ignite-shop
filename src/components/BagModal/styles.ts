@@ -76,6 +76,10 @@ export const Content = styled(Dialog.Content, {
   footer: {
     marginTop: "auto",
   },
+
+  "@media (max-width: 420px)": {
+    width: "100%",
+  },
 });
 
 export const ProductsList = styled("div", {
@@ -110,8 +114,10 @@ export const Product = styled("div", {
   height: "100%",
 
   ".imageContainer": {
-    width: "6.3rem",
-    height: "5.8rem",
+    maxWidth: "6.3rem",
+    maxHeight: "6.3rem",
+    width: "100%",
+    height: "100%",
     background: "linear-gradient(180deg, #1ea486 0%, #7465d4 100%)",
 
     display: "flex",
@@ -261,6 +267,8 @@ export const ProductCounter = styled("div", {
 
     "&:disabled": {
       cursor: "not-allowed",
+      opacity: 0.6,
+      color: "$green50",
     },
 
     svg: {
