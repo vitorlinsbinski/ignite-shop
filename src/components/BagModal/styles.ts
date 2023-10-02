@@ -79,7 +79,6 @@ export const Content = styled(Dialog.Content, {
 
   "@media (max-width: 420px)": {
     width: "100%",
-    padding: "3.5rem 1rem 1rem",
   },
 });
 
