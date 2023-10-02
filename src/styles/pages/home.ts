@@ -16,5 +16,6 @@ export const HomeContainer = styled("main", {
 
   "@media (max-width: 720px)": {
     paddingLeft: "1rem",
+    marginTop: "2rem",
   },
 });

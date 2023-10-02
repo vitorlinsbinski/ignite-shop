@@ -6,6 +6,10 @@ export const Container = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   minHeight: "100vh",
+
+  "@media (max-width: 720px)": {
+    justifyContent: "start",
+  },
 });
 
 const LoadingAnimation = keyframes({

@@ -7,6 +7,7 @@ export const SuccessContainer = styled("main", {
   justifyContent: "center",
   margin: "0 auto",
   height: 656,
+  padding: "0 1rem",
 
   h1: {
     fontSize: "$2xl",
@@ -34,6 +35,22 @@ export const SuccessContainer = styled("main", {
 
     "&:hover": {
       color: "$green300",
+    },
+  },
+
+  "@media (max-width: 720px)": {
+    h1: {
+      fontSize: "1.6rem",
+    },
+
+    p: {
+      fontSize: "1rem",
+      marginTop: "1rem",
+    },
+
+    a: {
+      marginTop: "2rem",
+      fontSize: "1.4rem",
     },
   },
 });

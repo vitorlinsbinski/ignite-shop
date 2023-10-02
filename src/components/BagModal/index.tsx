@@ -30,7 +30,6 @@ export function BagModal() {
     stopCheckoutLoading,
     isCreatingCheckoutSection,
   } = useContext(CartContext);
-  console.log(productsInCart);
 
   const totalAmount = productsInCart.reduce((acc, product) => {
     return acc + product.price * product.quantity;

@@ -13,10 +13,8 @@ const skeletonAnimation = keyframes({
 export const ProductContainer = styled("main", {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  alignItems: "stretch",
   gap: "4rem",
   maxWidth: 1180,
-  margin: "0 auto",
   padding: "0 1rem",
   width: "100%",
   paddingBottom: "1.5rem",
@@ -26,6 +24,7 @@ export const ProductContainer = styled("main", {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+
     maxWidth: "40rem",
     gap: "2rem",
   },
@@ -37,6 +36,7 @@ export const ImageContainer = styled("div", {
   background: "linear-gradient(180deg, #1ea486 0%, #7465d4 100%)",
   borderRadius: 8,
   padding: "0.25rem",
+  overflow: "hidden",
 
   display: "flex",
   alignItems: "center",
@@ -50,6 +50,7 @@ export const ImageContainer = styled("div", {
 
   "@media (max-width: 991px)": {
     width: "100%",
+    height: "auto",
   },
 });
 
