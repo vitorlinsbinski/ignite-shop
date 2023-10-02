@@ -5,6 +5,8 @@ export default function Document() {
   return (
     <Html lang="pt-br">
       <Head>
+        <link rel="icon" href="favicon/favicon.ico" sizes="any" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
