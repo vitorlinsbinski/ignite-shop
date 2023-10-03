@@ -3,7 +3,7 @@
 </div>
 
 <h1 align = "center">Ignite Shop</h1>
-<p>A project simulating an e-commerce that sells T-Shirts from Rocketseat. This project is using NextJS with TypeScript.</p>
+<p>A project simulating an e-commerce that sells Rocketseat's T-Shirts. This project is using NextJS with TypeScript.</p>
 <p>The main purpose of this project is to learn the principles of NextJS Front-End Framework, such as SSR (Server Side Rendering), SSG (Static Site Generating), web performance, routing by directories, and how this tool helps us developers to make pages trackable for browsers bots aiming to improve the SEO.</p>
 
 <div align="center">
@@ -38,11 +38,11 @@
 
 ## Features
 
-Ignite Shop is a fake e-commerce developed to study NextJS. The main concepts learned are how this framework build static pages with "getStaticProps", that is a function called by internal NodeJS server during build time, as well web optimization.
+Ignite Shop is an e-commerce developed to study NextJS. The main concepts learned are how this framework builds static pages with "getStaticProps", which is a function called by the internal NodeJS server during build time, as well as web optimization.
 
 ### 1. Add product to cart
 
-You can add as many products you want in the cart by clicking on the button with the bag icon or on the product page.
+You can add as many products as you want to the cart by clicking on the button with the bag icon or on the product page.
 
 ### 2. View product details in product page
 
@@ -70,7 +70,7 @@ If the purchase information is correct and there's nothing wrong with it, you ar
 
 ## Running the application
 
-<p>Before you run the application, read the docs of Stripe Library and create an account to prceed with this project.</p>
+<p>Before you run the application, read the docs of Stripe Library and create an account to proceed with this project.</p>
 
 ```bash
     # Clone this repository on your machine:
@@ -88,7 +88,7 @@ If the purchase information is correct and there's nothing wrong with it, you ar
 
 <p>After this, go to "developers" and generate the public and the private API keys. Then, put these API keys in the format of environment variables, creating a file called ".env.local" in the project root folder, containing "PUBLIC_KEY" and "STRIPE_SECRET_KEY". Additionally, you must create a variable called "NEXT_URL", which receives the URL where the project is hosted, that is, on localhost in development mode. </p>
 
-<p>So, create products on the Stripe page containing name, description, image and price.</p>
+<p>So, create products on the Stripe page containing name, description, image, and price.</p>
 
 ## Main Technologies
 
