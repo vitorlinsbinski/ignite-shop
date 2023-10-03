@@ -4,7 +4,7 @@
 
 <h1 align = "center">Ignite Shop</h1>
 <p>A project simulating an e-commerce that sells Rocketseat's T-Shirts. This project is using NextJS with TypeScript.</p>
-<p>The main purpose of this project is to learn the principles of NextJS Front-End Framework, such as SSR (Server Side Rendering), SSG (Static Site Generating), web performance, routing by directories, and how this tool helps us developers to make pages trackable for browsers bots aiming to improve the SEO.</p>
+<p>The main purpose of this project is to learn the principles of NextJS Front-End Framework, such as SSR (Server Side Rendering), SSG (Static Site Generating), web performance, routing by file system, and how this tool helps us developers to make pages trackable for browsers bots aiming to improve the SEO.</p>
 
 <div align="center">
   <div style="display: flex; justify-content: space-between; align-items: center;">
