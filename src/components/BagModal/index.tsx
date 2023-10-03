@@ -41,25 +41,27 @@ export function BagModal() {
   }).format(totalAmount);
 
   async function handleBuyProduct() {
-    const requestData = productsInCart.map((product) => ({
-      priceId: product.defaultPriceId,
-      quantity: product.quantity, // Inclua a quantidade aqui
-    }));
+    if (productsInCart.length > 0) {
+      const requestData = productsInCart.map((product) => ({
+        priceId: product.defaultPriceId,
+        quantity: product.quantity, // Inclua a quantidade aqui
+      }));
 
-    try {
-      startCheckoutLoading();
+      try {
+        startCheckoutLoading();
 
-      const response = await axios.post("/api/checkout", {
-        products: requestData,
-      });
+        const response = await axios.post("/api/checkout", {
+          products: requestData,
+        });
 
-      const { checkoutUrl } = response.data;
+        const { checkoutUrl } = response.data;
 
-      // Redirect to the checkout page
-      window.location.href = checkoutUrl;
-    } catch {
-      stopCheckoutLoading();
-      alert("Falha ao redirecionar ao checkout");
+        // Redirect to the checkout page
+        window.location.href = checkoutUrl;
+      } catch {
+        stopCheckoutLoading();
+        alert("Falha ao redirecionar ao checkout");
+      }
     }
   }
 
@@ -130,7 +132,7 @@ export function BagModal() {
           </PurchaseResume>
           <FinalizePurchaseButton
             onClick={handleBuyProduct}
-            disabled={isCreatingCheckoutSection}
+            disabled={isCreatingCheckoutSection || !(productsInCart.length > 0)}
           >
             Finalizar compra
           </FinalizePurchaseButton>

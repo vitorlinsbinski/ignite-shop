@@ -95,7 +95,6 @@ If the purchase information is correct and there's nothing wrong with it, you ar
 - [ReactJS](https://react.dev/)
 - [NextJS](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [React Router DOM](https://reactrouter.com/en/main)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
 - [Stitches](https://stitches.dev/)
 - [Radix UI](https://www.radix-ui.com/)
